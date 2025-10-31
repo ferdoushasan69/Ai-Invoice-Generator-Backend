@@ -24,20 +24,20 @@ exports.registerUser = async (req, res) => {
         }
 
         //check if user exists
-        const userExists = User.findOne({ email });
+        const userExists = await User.findOne({ email });
         if (userExists) {
             return res.status(400).json({ message: "User already exists" });
         }
 
         //create user
-        const user = User.create({ name, email, password });
+        const user = await User.create({ name, email, password });
 
         if (user) {
             res.status(201).json({
-                _id: user.id,
+                _id: user._id,
                 name: user.name,
                 email: user.email,
-                token: generateToken(user.id),
+                token: generateToken(user._id),
             });
         } else {
             res.status(400).json({ message: "Invalid user data" });
@@ -58,10 +58,10 @@ exports.loginUser = async (req, res) => {
         const user = await User.findOne({ email }).select("+password");
         if (user && (await user.matchPassword(password))) {
             res.json({
-                _id: user.id,
+                _id: user._id,
                 name: user.name,
                 email: user.email,
-                token: generateToken(user.id),
+                token: generateToken(user._id),
                 businessName: user.businessName || "",
                 address: user.address || "",
                 phone: user.phone || "",
