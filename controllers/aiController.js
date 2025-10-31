@@ -5,7 +5,7 @@ const { model } = require("mongoose");
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-const parseInvoiceFromText = async (req, res) => {
+const parseInvoiceFromText  = async (req, res) => {
     const { text } = req.body;
 
     if (!text) {
@@ -146,4 +146,4 @@ const getDashboardSummary = async (req, res) => {
 }
 
 
-module.exports = { parseInvoiceFromText, generateReminderEmail, getDashboardSummary };
+module.exports = { parseInvoiceFromText , generateReminderEmail, getDashboardSummary };
