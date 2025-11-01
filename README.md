@@ -49,5 +49,7 @@ This is a Node.js backend for an AI-powered invoice processing system, designed 
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/ferdoushasan69/Ai-Invoice-Generator-Backend.git
 cd <project-folder>
+
+
